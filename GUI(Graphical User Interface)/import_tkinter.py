@@ -1,6 +1,6 @@
 # Import Tk Inter and perform title, geomatry, minsize, maxsize, resizable
 
-import tkinter as tk # tkinter library used to create UGC application in python
+import tkinter as tk # tkinter library used to create GUI application in python
 root = tk.Tk() # root is the parent window where all widget will be placed
 #widget means button,labels, entires etc.
 
