@@ -156,7 +156,7 @@ plt.savefig("label.png")
 plt.show()
 '''
 # ALPHA: Control Transparancy "value range from 0 to 1"
-
+'''
 import matplotlib.pyplot as plt
 
 x = [1,2,3,4,5,6,7]
@@ -180,6 +180,36 @@ plt.plot(x,y,
 plt.title("Add Transparency")
 plt.grid()
 plt.savefig("alpha.png")
+plt.show()
+'''
+# Complete Example
+
+import matplotlib.pyplot as plt
+
+x = [1,2,3,4,5]
+y = [10,20,15,30,25]
+
+plt.plot(
+    x,
+    y,
+    color="blue",
+    linestyle="--",
+    linewidth=3,
+    marker="o",
+    markersize=10,
+    markerfacecolor="yellow",
+    markeredgecolor="black",
+    markeredgewidth=2,
+    label="Sales",
+    alpha=0.8
+)
+
+plt.title("Monthly Sales")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+plt.grid(True)
+plt.legend()
+
 plt.show()
 
 
