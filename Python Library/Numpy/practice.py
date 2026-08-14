@@ -211,3 +211,59 @@ print("\nReplace above 50 into 0:")
 replace = np.array([10, 25, 50, 75, 100])
 rplc = np.where(replace > 50, 0, replace)
 print(rplc)
+
+#Q24. Student Marks Analyzer
+# Given: marks = np.array([
+#   [78, 85, 69],
+#   [65, 72, 80],
+#   [92, 88, 95],
+#   [45, 55, 48],
+#   [81, 79, 85]
+#])
+
+# Find:
+
+marks = np.array([
+    [78, 85, 69],
+    [65, 72, 80],
+    [92, 88, 95],
+    [45, 55, 48],
+    [81, 79, 85]
+    ])
+
+print(marks)
+# Total marks of each student
+total_mark = np.sum(marks, axis = 1)
+print("\nTotal Marks Of Each Students:",total_mark)
+
+# Average marks of each student
+avg_mark = np.mean(marks, axis = 1)
+print("\nTotal Marks Of Each Students:",avg_mark)
+
+# Highest mark
+hig_mark = np.max(marks)
+print("\nHighest Marks:",hig_mark)
+
+# Lowest mark
+low_mark = np.min(marks)
+print("\nLowest Marks:",low_mark)
+
+# Highest mark in each subject
+hig_mark_sub = np.max(marks, axis = 0)
+print("\nHighest Mark in Each Subject:",hig_mark_sub)
+
+# Average of each subject
+avg_sub = np.mean(marks, axis = 0)
+print("\nAverage of Each Subject:",avg_sub)
+
+# Student with highest total
+total_std = np.argmax(total_mark)+1
+print("\nStudent With Highest Total:",total_std)
+
+# Students with average >= 80
+std_avg = np.where(avg_mark >= 80)[0]+1
+print("\nStudents with average:",std_avg)
+
+# Pass/fail status
+pas_fail = np.where(avg_mark >= 40 ,"Pass","Faile")
+print("\nPass/Fail:",pas_fail)
