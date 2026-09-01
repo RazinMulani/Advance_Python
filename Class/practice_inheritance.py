@@ -200,3 +200,89 @@ class Result(Student,Marks):
 
 obj1 = Result("Razin",101,22,"CS","Male",56,78,67,89,70)
 obj1.display()
+
+
+# 📝 Practice Question: Employee Management System
+# Create a Python program using Hybrid Inheritance for an Employee Management System.
+
+class Person:
+    def person_info(self,p_n,p_a):
+        self.name = p_n
+        self.age = p_a
+
+    def display_1(self):
+        print("Name of Person:",self.name)
+        print("Age of Person:",self.age)
+
+class Employee(Person):
+    def employee_info(self,emp_id,emp_d):
+        self.employee_id = emp_id
+        self.employee_d = emp_d
+
+    def display_2(self):
+        print("Employee ID:",self.employee_id)
+        print("Employee Department:",self.employee_d)
+
+class Salary:
+    def salary_info(self,b_salary,s_b):
+        self.basic_salary = b_salary
+        self.bonus = s_b
+
+    def display_3(self):
+        print("Basic Salary:",self.basic_salary)
+        print("Bonus:",self.bonus)
+
+class Manager(Employee,Salary):
+    def total(self):
+        total = self.basic_salary + self.bonus
+        print("Total:",total)
+
+
+
+o = Manager()
+o.person_info("Razin",22)
+o.display_1()
+o.employee_info("E101","IT")
+o.display_2()
+o.salary_info(1000000,20000)
+o.display_3()
+o.total()
+
+
+# 📝 Practice Question: Vehicle Management System
+# Create a Python program using Hierarchical Inheritance.
+
+class Vehicle:
+    def vehicle_info(self,v_n,v_t,r_p_d):
+        self.vehicle_name = v_n
+        self.vehicle_type = v_t
+        self.vehicle_rent_p_d = r_p_d
+
+        print("Vehicle Name:",self.vehicle_name)
+        print("Vehicle Type:",self.vehicle_type)
+        print("Vehicle Rent Per Day:",self.vehicle_rent_p_d)
+
+class Car(Vehicle):
+    def car_info(self,n_o_d):
+        self.number_of_door = n_o_d
+
+        print("Number Of Door in Car:",self.number_of_door)
+
+
+class Bike(Vehicle):
+    def bike_info(self,e_cc):
+        self.engine_cc = e_cc
+
+        print("Engine CC:",self.engine_cc)
+
+
+
+o = Car()
+o.vehicle_info("BMW","Sport Car",120000)
+o.car_info(4)
+
+o1 = Bike()
+o1.vehicle_info("Royal Enfield Classic 350","Bike",20000)
+o1.bike_info(350)
+
+
