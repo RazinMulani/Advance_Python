@@ -25,18 +25,44 @@ vehicles = [mustang, fortuner, bmw]
 '''
 # ============== Add Vehicle ============ #
 vehicles = []
+AVAILABLE = "Available"
+RENTED = "Rented"
 def add_vehicle():
     vehicle_id = input("Enter Vehicle ID: ")
+    if vehicle_id == "":
+        print("Vehicle ID Cannot Be Empty!")
+        return
+
+    for vehicle in vehicles:
+        if vehicle.v_id == vehicle_id:
+            print("Vehicle ID Already Exists!")
+            return
+        
     vehicle_name = input("Enter Vehicle Name: ")
+    if vehicle_name == "":
+        print("Vehicle Name Cannot Be Empty!")
+        return
+    
     vehicle_type = input("Enter Vehicle Type: ")
+    if vehicle_type == "":
+        print("Vehicle Type Cannot Be Empty!")
+        return
+    
     model = input("Enter Vehicle Model: ")
+    if model == "":
+        print("Vehicle Model Cannot Be Empty!")
+        return
+    
     try:
         rent_per_day = int(input("Enter Rent Per Day: "))
     except ValueError:
         print("Invalid input! Please enter a number.")
         return
+    if rent_per_day <= 0:
+        print("Rent Per Day Must Be Greater Than 0")
+        return
         
-    availability = "Available"
+    availability = AVAILABLE
 
     vehicle = Vehicle(
         vehicle_id,
@@ -51,16 +77,23 @@ def add_vehicle():
 
 # ============== Display Vehicle ============ #
 def display_vehicles():
+    if not vehicles:
+        print("No Vehicles Found!")
+        return
+
     for vehicle in vehicles:
         vehicle.display()
 
 # ============== Search Vehicle ============ #
 def search_vehicle():
     vehicle_id = input("\nEnter Vehicle ID:")
+    if vehicle_id == "":
+        print("Vehicle ID Cannot Be Empty!")
+        return
     found = False
     
     for vehicle in vehicles:
-        if vehicle.v_id == vehicle_id:
+        if vehicle.v_id.lower() == vehicle_id.lower():
             print("\nVehicle Found\n")
 
             print("Vehicle ID:",vehicle.v_id)
@@ -78,10 +111,13 @@ def search_vehicle():
 # ============== Delete Vehicle ============ #
 def delete_vehicles():
     vehicle_id = input("Enter Vehicle ID to Delete:")
+    if vehicle_id == "":
+        print("Vehicle ID Cannot Be Empty!")
+        return
     found = False
 
     for vehicle in vehicles:
-        if vehicle.v_id == vehicle_id:
+        if vehicle.v_id.lower() == vehicle_id.lower():
             print("Vehicle Found!")
             vehicles.remove(vehicle)
             print("Vehicle Deleted Successfully!")
@@ -94,10 +130,13 @@ def delete_vehicles():
 # ============== Availability Vehicle ============ #
 def availability_vehicle():
     vehicle_id = input("Enter Vehicle ID:")
+    if vehicle_id == "":
+        print("Vehicle ID Cannot Be Empty!")
+        return
     found = False
 
     for vehicle in vehicles:
-        if vehicle.v_id ==  vehicle_id:
+        if vehicle.v_id.lower() ==  vehicle_id.lower():
             print("Found Vehicle Id!")
             print("Vehicle Name:",vehicle.v_name)
             print("Vehicle Availability:",vehicle.v_availability)
@@ -109,24 +148,37 @@ def availability_vehicle():
 # ============== Rental Vehicle ============ #
 def rent_vehicle():
     vehicle_id = input("Enter Vehicle ID:")
+    if vehicle_id == "":
+        print("Vehicle ID Cannot Be Empty!")
+        return
     found = False
 
     for vehicle in vehicles:
-        if vehicle.v_id == vehicle_id:
+        if vehicle.v_id.lower() == vehicle_id.lower():
             print("Vehicle Found!")
             print("Vehicle Name",vehicle.v_name)
             print("Rent Per Day:",vehicle.v_rent_per_day)
             print("Vehicle Availability:",vehicle.v_availability)
             found = True
 
-            if vehicle.v_availability == "Rented":
+            if vehicle.v_availability == RENTED:
                 print("Vehicle Is Alraedy Rented")
             else:
-                rent_days = int(input("Enter Number of Days:"))
+                try:
+                    rent_days = int(input("Enter Number of Days:"))
+                except ValueError:
+                    print("Invalid input! Please enter a number.")
+                    return
+
+                if rent_days <= 0:
+                    print("Number Of Days Must be Greater Than 0")
+                    return
+                
                 total_rent = vehicle.v_rent_per_day * rent_days
-                vehicle.v_availability = "Rented"
+                vehicle.v_availability = RENTED
                 print("Total Rent:",total_rent)
                 print("Vehicle Rented successfully!")
+            
             
             break
     if not found:
@@ -135,17 +187,20 @@ def rent_vehicle():
 # ============== Return Vehicle ============ #
 def return_vehicle():
     vehicle_id = input("Enter Vehicle ID:")
+    if vehicle_id == "":
+        print("Vehicle ID Cannot Be Empty!")
+        return
     found = False
 
     for vehicle in vehicles:
-        if vehicle.v_id == vehicle_id:
+        if vehicle.v_id.lower() == vehicle_id.lower():
             print("Vehicle Found!")
             print("Vehicle Name:",vehicle.v_name)
             print("Vehicle Availability:",vehicle.v_availability)
             found = True
 
-            if vehicle.v_availability == "Rented":
-                vehicle.v_availability = "Available"
+            if vehicle.v_availability == RENTED:
+                vehicle.v_availability = AVAILABLE
 
                 print("Vehicle Returned Successfully!")
                 print("Vehicle Availability:", vehicle.v_availability)
@@ -180,7 +235,7 @@ while True:
         search_vehicle()
 
     elif choice =="4":
-        delete_vehicle()
+        delete_vehicles()
 
     elif choice == "5":
         availability_vehicle()
